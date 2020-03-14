@@ -1,0 +1,41 @@
+#
+# Electrum 1.0
+# Created by _Fleek, adapted by Telesphoreo
+#
+
+server:
+  # Your server's name
+  name: TotalFreedom
+
+  # Your server's owner(s)
+  owners: []
+
+  # Your server's executive(s)
+  executives: []
+
+  # Master Builder(s)
+  masterbuilders: []
+
+# Blocked commands
+commands:
+  default:
+  - '/gamemode'
+  - '/time'
+  - '/ban-ip'
+  - '/pardon-ip'
+  - '/pardon'
+  - '/save-on'
+  - '/save-off'
+  - '/nuke'
+  - '/summon'
+  - '/setblock'
+  - '/fill'
+  - '/tellraw'
+
+  admins:
+  - '/stop'
+  - '/restart'
+  - '/save-all'
+  - '/reload'
+  - '/gamerule'
+  - '/kick'

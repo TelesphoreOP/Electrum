@@ -1,0 +1,7 @@
+name: Electrum
+version: ${project.version}
+api: ["1.0.9"]
+load: STARTUP
+author: _Fleek, Telesphoreo
+description: A freedom plugin designed for a Nukkit server
+main: me.telesphoreo.electrum.Electrum
