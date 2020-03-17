@@ -2,15 +2,16 @@ package me.telesphoreo.electrum;
 
 import cn.nukkit.Server;
 import cn.nukkit.plugin.PluginBase;
-import cn.nukkit.plugin.PluginDescription;
 import cn.nukkit.utils.Config;
 import cn.nukkit.utils.TextFormat;
 import me.telesphoreo.electrum.admin.AdminList;
 import me.telesphoreo.electrum.banning.BanManager;
 import me.telesphoreo.electrum.command.CommandLoader;
+import me.telesphoreo.electrum.listener.AdminListener;
 import me.telesphoreo.electrum.listener.BanListener;
-import me.telesphoreo.electrum.listener.PlayerListener;
-import me.telesphoreo.electrum.player.PlayerData;
+import me.telesphoreo.electrum.listener.ChatListener;
+import me.telesphoreo.electrum.listener.CommandListener;
+import me.telesphoreo.electrum.listener.FreezeListener;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
@@ -26,10 +27,13 @@ public class Electrum extends PluginBase
     public Config admins;
     public Config bans;
     public AdminList al;
+    public AdminListener aln;
     public BanListener bl;
     public BanManager bm;
-    public CommandLoader cl;
-    public PlayerListener pl;
+    public ChatListener cl;
+    public CommandListener cli;
+    public CommandLoader cmdl;
+    public FreezeListener fl;
 
     @Override
     public void onLoad()
@@ -45,17 +49,20 @@ public class Electrum extends PluginBase
         plugin = this;
         server = this.getServer();
 
-        pluginName = plugin.getName();
-        pluginVersion = plugin.getDescription().getVersion();
+        pluginName = this.getName();
+        pluginVersion = this.getDescription().getVersion();
 
-        al = new AdminList(plugin);
-        bl = new BanListener(plugin);
-        bm = new BanManager(plugin);
-        cl = new CommandLoader();
-        pl = new PlayerListener(plugin);
+        al = new AdminList(this);
+        aln = new AdminListener(this);
+        bl = new BanListener(this);
+        bm = new BanManager(this);
+        cmdl = new CommandLoader();
+        cli = new CommandListener(this);
+        cl = new ChatListener(this);
+        fl = new FreezeListener(this);
 
         this.getLogger().info(TextFormat.WHITE + "Created by " + StringUtils.join(this.getDescription().getAuthors(), ", "));
-        this.getLogger().info(TextFormat.WHITE + "Version: " + this.getDescription().getVersion());
+        this.getLogger().info(TextFormat.WHITE + "Version: " + pluginVersion);
         this.getLogger().info(TextFormat.WHITE + "The plugin has been enabled.");
     }
 

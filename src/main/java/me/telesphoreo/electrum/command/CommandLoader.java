@@ -92,7 +92,7 @@ public class CommandLoader
                 Electrum.plugin.getLogger().critical("", ex);
             }
         }
-        else if (cmap != null)
+        else
         {
             return cmap;
         }
